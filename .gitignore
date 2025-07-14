@@ -1,0 +1,10 @@
+node_modules
+dist
+
+.env
+
+uploads
+src/.DS_Store
+.DS_Store
+src/public/.DS_Store
+src/views/.DS_Store
