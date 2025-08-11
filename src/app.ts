@@ -1,7 +1,7 @@
 import express, { urlencoded } from "express";
 import path from "path";
 import morgan from "morgan";
-import { MORGAN_FORMAT } from "./libs/utils/config";
+import { MORGAN_FORMAT } from "./libs/config";
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from "./libs/types/common";
@@ -45,4 +45,5 @@ app.set("view engine", "ejs");
 /** 4- Routers **/
 //app.use("/admin", routerAdmin);
 //app.use("/", router);
+
 export default app;
