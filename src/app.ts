@@ -1,4 +1,4 @@
-import express, { urlencoded } from "express";
+import express from "express";
 import path from "path";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
