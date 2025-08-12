@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import router from "./router";
 import morgan from "morgan";
 import { MORGAN_FORMAT } from "./libs/config";
 import session from "express-session";
@@ -45,6 +46,6 @@ app.set("view engine", "ejs");
 
 /** 4- Routers **/
 app.use("/admin", routerAdmin);
-//app.use("/", router);
+app.use("/", router);
 
 export default app;
