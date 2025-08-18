@@ -11,7 +11,7 @@ const memberService = new MemberService();
 restaurantController.homePage = (req: Request, res: Response) => {
   try {
     console.log("homePage");
-    res.send("homePage");
+    res.render("home");
   } catch (err) {
     console.log("Error on homePage", err);
   }
@@ -20,7 +20,7 @@ restaurantController.homePage = (req: Request, res: Response) => {
 restaurantController.getLogin = (req: Request, res: Response) => {
   try {
     console.log("getLogin");
-    res.send("getLogin");
+    res.render("login");
   } catch (err) {
     console.log("Error on getLogin", err);
   }
@@ -29,7 +29,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
 restaurantController.getSignup = (req: Request, res: Response) => {
   try {
     console.log("getSignup");
-    res.send("getSignup");
+    res.render("signup");
   } catch (err) {
     console.log("Error on getSignup", err);
   }
@@ -120,7 +120,7 @@ restaurantController.checkAuthSession = async (
 };
 
 //verifyAdmin
-restaurantController.admin = (
+restaurantController.verifyAdmin = (
   req: AdminRequest,
   res: Response,
   next: NextFunction
