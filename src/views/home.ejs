@@ -1,13 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/main.css" />
-    <script src="/js/main.js"></script>
-  </head>
-  <body>
-    HOME
-  </body>
-</html>
+<%- include('includes/header') %>
+
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
+<body>
+  <div class="home-container">
+    <div class="brand-logo">
+      <span class="sob">SOB</span>
+      <span class="ready">READY</span>
+    </div>
+    <div class="navigation-menu">
+      <ul class="nav justify-content-center">
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link active" href="/admin">Home</a>
+        </li>
+        <% if(!member) { %>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/signup">Signup</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/login">Login</a>
+        </li>
+        <% } else { %>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/product/all">Menu</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer">
+          <a class="nav-link" href="/admin/user/all">Users</a>
+        </li>
+        <li
+          class="nav-item"
+          style="cursor: pointer"
+          onclick="return confirm('Do you want to logout?')"
+        >
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/js/home.js"></script>
+</body>
+
+<%- include('includes/footer') %>
