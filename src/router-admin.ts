@@ -1,10 +1,9 @@
 import express, { Request, Response } from "express";
+const routerAdmin = express.Router();
 import restaurantController from "./controllers/restaurant.controller ";
 import makeUploader from "./libs/utils/uploader";
-import { ProductCollection } from "./libs/enums/product.enum";
 import productController from "./controllers/product.controller ";
 import memberController from "./controllers/member.controller ";
-const routerAdmin = express.Router();
 
 /* Restaurant */
 routerAdmin.get("/", restaurantController.homePage);
@@ -32,12 +31,25 @@ routerAdmin.get(
 );
 routerAdmin.post(
   "/product/create",
-  memberController.verifyAdmin,
+  restaurantController.verifyAdmin,
+  makeUploader("products").array("productImages", 5),
   productController.createNewProduct
 );
 routerAdmin.post(
   "/product/:id",
-  memberController.verifyAdmin,
+  restaurantController.verifyAdmin,
   productController.updateChosenProduct
 );
 export default routerAdmin;
+
+/* USERS */
+routerAdmin.get(
+  "/user/all",
+  restaurantController.verifyAdmin,
+  restaurantController.getUsers
+);
+routerAdmin.post(
+  "/user/edit/:id",
+  restaurantController.verifyAdmin,
+  restaurantController.updateChoosenUser
+);

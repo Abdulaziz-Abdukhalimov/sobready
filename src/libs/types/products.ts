@@ -13,11 +13,14 @@ export interface Product {
   productName: string;
   productPrice: number;
   productLeftCount: number;
+  productSoldCount: number;
   productSize: ProductSize;
   productVolume: ProductVolume;
   productDesc?: string;
   productImages: string[];
-  productViews: number;
+  productView: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
 export interface ProductInput {
   productStatus?: ProductStatus;
@@ -29,7 +32,7 @@ export interface ProductInput {
   productVolume?: ProductVolume;
   productDesc?: string;
   productImages?: string[];
-  productViews?: number;
+  productView?: number;
 }
 export interface ProductUpdateInput {
   _id: ObjectId;
