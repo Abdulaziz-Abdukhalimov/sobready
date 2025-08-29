@@ -40,6 +40,11 @@ routerAdmin.post(
   restaurantController.verifyAdmin,
   productController.updateChosenProduct
 );
+routerAdmin.post(
+  "/product/delete/:id",
+  restaurantController.verifyAdmin,
+  productController.deleteChoosenProduct
+);
 export default routerAdmin;
 
 /* USERS */

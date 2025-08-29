@@ -55,4 +55,20 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
   }
 };
 
+productController.deleteChoosenProduct = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    console.log("deleteChoosenProduct");
+    const id = req.params.id;
+    const result = await productService.deleteChoosenProduct(id);
+    res.status(HttpCode.DELETED).end();
+  } catch (err) {
+    console.log("Error deleteChoosenProduct:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+};
+
 export default productController;
