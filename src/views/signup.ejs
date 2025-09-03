@@ -1,11 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body style="background: azure">
-    SIGNUP
+<%- include('includes/header') %>
+
+<link rel="stylesheet" type="text/css" href="/css/signup.css" />
+
+<body>
+  <body>
+    <div class="auth-container">
+      <!-- Left Side -->
+      <div class="auth-left">
+        <h1>Hello!</h1>
+        <p>
+          To keep connected with us please login<br />
+          with your personal info
+        </p>
+        <button class="btn-outline login-btn">
+          <a href="/admin/login">LOG IN</a>
+        </button>
+        <div><a href="/admin" style="color: aliceblue">Home</a></div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="auth-right">
+        <h1>Create Account</h1>
+        <div class="social-icons">
+          <a href="#"><span>f</span></a>
+          <a href="#"><span>G+</span></a>
+          <a href="#"><span>in</span></a>
+        </div>
+        <p>or use your email for registration</p>
+        <form
+          action="/admin/signup"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input type="text" name="memberNick" placeholder="Name" value="" />
+          <input type="text" name="memberPhone" placeholder="Phone" value="" />
+          <input
+            type="password"
+            name="memberPassword"
+            placeholder="Password"
+            value=""
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value=""
+          />
+          <button type="submit" class="btn-solid">SIGN UP</button>
+        </form>
+      </div>
+    </div>
   </body>
-</html>
+
+  <script type="text/javascript" src="/js/signup.js"></script>
+</body>
+<%- include('includes/footer') %>
