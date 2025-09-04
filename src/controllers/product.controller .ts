@@ -12,7 +12,7 @@ productController.getAllProducts = async (req: Request, res: Response) => {
   try {
     console.log("getAllProducts");
     const data = await productService.getAllProducts();
-    res.send(data);
+    res.render("products", { products: data });
   } catch (err) {
     console.log("Error getAllProducts:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -34,7 +34,9 @@ productController.createNewProduct = async (
       return el.path.replace(/\\/g, "/");
     });
     await productService.createNewProduct(data);
-    res.send("product created");
+    res.send(
+      `<script> alert("Product successfully created"); window.location.replace('/admin/product/all')</script>`
+    );
   } catch (err) {
     console.log("Error createNewProduct:", err);
     if (err instanceof Errors) res.status(err.code).json(err);

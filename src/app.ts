@@ -7,6 +7,8 @@ import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session";
 import { T } from "./libs/types/common";
 import routerAdmin from "./router-admin";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
@@ -20,6 +22,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("./uploads"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors({ credentials: true, origin: true }));
+app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 
 /* 2- Sessions */
@@ -48,5 +52,4 @@ app.set("view engine", "ejs");
 /** 4- Routers **/
 app.use("/admin", routerAdmin);
 app.use("/", router);
-
 export default app;

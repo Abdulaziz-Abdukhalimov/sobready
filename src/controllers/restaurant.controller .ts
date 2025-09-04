@@ -43,11 +43,12 @@ restaurantController.processLogin = async (
   try {
     console.log("processLogin");
     const input: LoginInput = req.body;
+    console.log("info:", input);
     const result = await memberService.processLogin(input);
     // SESSIONS AUTHENTICATION
     req.session.member = result;
     req.session.save(function () {
-      res.send("wellcome to product page");
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error processLogin:", err);
@@ -66,18 +67,18 @@ restaurantController.processSignup = async (
 ) => {
   try {
     console.log("processSignup");
-    const file = req.file;
-    if (!file)
-      throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
+    // const file = req.file;
+    // if (!file)
+    //   throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
     const newMember: MemberInput = req.body;
-    newMember.memberImage = file?.path.replace(/\\/g, "/");
+    // newMember.memberImage = file?.path.replace(/\\/g, "/");
     newMember.memberType = MemberType.ADMIN;
     const result = await memberService.processSignup(newMember);
 
     // SESSIONS AUTHENTICATION
     req.session.member = result;
     req.session.save(function () {
-      res.send("welcome to products page");
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error processSignup:", err);
@@ -141,7 +142,7 @@ restaurantController.getUsers = async (req: Request, res: Response) => {
   try {
     console.log("getUsers");
     const result = await memberService.getUsers();
-    res.send({ users: result });
+    res.render("users", { users: result });
   } catch (err) {
     console.log("Error go getUsers:", err);
     res.redirect("/admin/login");
