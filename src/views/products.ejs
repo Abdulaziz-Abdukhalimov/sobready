@@ -31,55 +31,67 @@
           <span class="new-dish-txt" style="margin-bottom: 30px">
             RESTAURANT MENU
           </span>
-          <table class="table table-hover ">
+          <table class="table table-hover table-borderless">
             <thead class="thead-light">
               <tr class="thead-light">
-                <th scope="col">T/r</th>
-                <th scope="col">Product Image</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Product Type</th>
-                <th scope="col">Product Volume</th>
-                <th scope="col">Product Price</th>
-                <th scope="col">Product Left Count</th>
+                <!-- <th scope="col">T/r</th> -->
+                <th scope="col"> Image</th>
+                <th scope="col"> Name</th>
+                <th scope="col"> Type</th>
+                <th scope="col"> Volume</th>
+                <th scope="col"> Price</th>
+                <th scope="col"> Left Count</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <!--  LOOP PRODUCTS: START  -->
             <% products.map( function(value, index) { %>
-            <tbody id="row-<%= value._id %>" style="background: white">
-  <td><%= index + 1 %></td>
-  <td>
-    <img src="/<%= value.productImages[0] %>" style="width: 40px; height: 40px; object-fit: cover; border-radius: 6px;">
-  </td>
-  <td class="product-name-cell"><%= value.productName %></td>
-  <td class="product-collection-cell"><%= value.productCollection %></td>
-  <td class="product-volume-cell">
-    <%= value.productCollection === 'DRINK' ? value.productVolume : value.productSize %>
-  </td>
-  <td class="product-price-cell"><%= value.productPrice %></td>
-  <td class="product-left-cell"><%= value.productLeftCount %></td>
-  <td>
-    <select class="spec-select new-product-status" id="<%= value._id %>">
-      <option value="OUTOFSTOCK" <%= value.productStatus === 'OUTOFSTOCK'? 'selected': '' %> >OUTOFSTOCK</option>
-      <option value="INSTOCK" <%= value.productStatus === 'INSTOCK'? 'selected': '' %> >INSTOCK</option>
-      <option value="DELETE" <%= value.productStatus === 'DELETE'? 'selected': '' %> >DELETE</option>
-    </select>
-  </td>
-  <td>
-    <span class="edit-product" data-id="<%= value._id %>" style="cursor:pointer;">✏️</span>
-  </td>
+           <tbody id="row-<%= value._id %>" style="background: white" >
+  <tr
+    data-id="<%= value._id %>"
+    data-name="<%= value.productName %>"
+    data-price="<%= value.productPrice %>"
+    data-left="<%= value.productLeftCount %>"
+    data-collection="<%= value.productCollection %>"
+    data-size="<%= value.productSize %>"
+    data-volume="<%= value.productVolume %>"
+    data-desc="<%= value.productDesc %>"
+  >
+    <!-- <td><%= index + 1 %></td> -->
+    <td>
+      <img src="/<%= value.productImages[0] %>" style="width: 40px; height: 40px; object-fit: cover; border-radius: 25px;">
+    </td>
+    <td class="product-name-cell"><%= value.productName %></td>
+    <td class="product-collection-cell"><%= value.productCollection %></td>
+    <td class="product-volume-cell">
+      <%= value.productCollection === 'DRINK' ? value.productVolume : value.productSize %>
+    </td>
+    <td class="product-price-cell"><%= value.productPrice %></td>
+    <td class="product-left-cell"><%= value.productLeftCount %></td>
+    <td>
+      <select class="spec-select new-product-status" id="<%= value._id %>">
+        <option value="OUTOFSTOCK" <%= value.productStatus === 'OUTOFSTOCK'? 'selected': '' %>>OUTOFSTOCK</option>
+        <option value="INSTOCK" <%= value.productStatus === 'INSTOCK'? 'selected': '' %>>INSTOCK</option>
+        <option value="DELETE" <%= value.productStatus === 'DELETE'? 'selected': '' %>>DELETE</option>
+      </select>
+    </td>
+    <td>
+      <span class="edit-product" style="cursor:pointer;">🖋️</span>
+    </td>
+  </tr>
 </tbody>
+
 
             <% })%>
             <!--  LOOP PRODUCTS: END  -->
           </table>
-          <div
+           <div
             class="long-input"
             style="align-items: flex-end; margin-bottom: 25px"
           >
-            <button class="btn btn-primary" id="process-btn">
-              New Product
+            <button class="btn" id="process-btn">
+              Add New Product
             </button>
           </div>
         </div>
@@ -134,11 +146,11 @@
             <div class="half-input">
               <label>Product Type</label>
               <select class="product-collection" name="productCollection">
-                <option value="DISH" selected>Dish</option>
+                <option value="SUSHI" selected>Sushi</option>
+                <option value="DISH">Dish</option>
                 <option value="SALAD">Salad</option>
-                <option value="DESSERT">Dessert</option>
+                <option value="SWEETS">Sweets</option>
                 <option value="DRINK">Drink</option>
-                <option value="OTHER">Other</option>
               </select>
             </div>
 
@@ -225,7 +237,7 @@
           </div>
 
           <div class="operation-buttons">
-            <button class="btn btn-danger" id="cancel-btn">Cancel</button>
+            <button class="btn btn-danger" id="cancel-btn" type="button">Cancel</button>
             <button type="submit" class="btn btn-primary" id="create-btn">
               Create
             </button>

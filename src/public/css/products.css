@@ -101,7 +101,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
-  color: #ffffff;
+  color: #4a4747;
 }
 
 .products-container .long-input input {
@@ -207,7 +207,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 25px;
-  color: #ffffff;
+  color: #4a4747;
 }
 
 .products-container .half-input input {
@@ -367,4 +367,13 @@ table th {
 
 .products-container .slider.round:before {
   border-radius: 50%;
+}
+.products-container .btn {
+  color: #888888;
+  background-color: #ffffff;
+  border: 1px #888888 solid;
+}
+.products-container .btn:hover {
+  color: #ffffff;
+  background-color: #888888;
 }

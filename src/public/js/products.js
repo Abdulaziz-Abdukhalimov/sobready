@@ -56,105 +56,109 @@ $(function () {
 });
 
 // Update product logic
-$(document).ready(function () {
-  // Edit button
-  $(document).on("click", ".edit-product", async function () {
-    const id = $(this).data("id"); // product id
+$(document).on("click", ".edit-product", function () {
+  // find the parent <tr> of the clicked button
+  const row = $(this).closest("tr");
 
-    try {
-      const response = await axios.get(`/admin/product/${id}`);
-      const product = response.data.product;
+  // read data from attributes
+  const id = row.data("id");
+  const name = row.data("name");
+  const price = row.data("price");
+  const left = row.data("left");
+  const collection = row.data("collection");
+  const size = row.data("size");
+  const volume = row.data("volume");
+  const desc = row.data("desc");
 
-      // Fill form
-      $(".product-name").val(product.productName);
-      $(".product-price").val(product.productPrice);
-      $(".product-left-count").val(product.productLeftCount);
-      $(".product-collection").val(product.productCollection);
-      $(".product-desc").val(product.productDesc || "");
+  // fill the form fields
+  $(".product-name").val(name);
+  $(".product-price").val(price);
+  $(".product-left-count").val(left);
+  $(".product-collection").val(collection);
+  $(".product-desc").val(desc || "");
 
-      if (product.productCollection === "DRINK") {
-        $("#product-collection").hide();
-        $("#product-volume").show();
-        $(".product-volume").val(product.productVolume);
-      } else {
-        $("#product-volume").hide();
-        $("#product-collection").show();
-        $(".product-size").val(product.productSize);
-      }
+  // toggle between size/volume fields
+  if (collection === "DRINK") {
+    $("#product-collection").hide();
+    $("#product-volume").show();
+    $(".product-volume").val(volume);
+  } else {
+    $("#product-volume").hide();
+    $("#product-collection").show();
+    $(".product-size").val(size);
+  }
 
-      // Store id
-      $(".dish-container").data("id", id);
+  // store product id for saving later
+  $(".dish-container").data("id", id);
 
-      // Switch button to Save mode
-      $("#create-btn").text("Save").addClass("update-mode");
+  // change button text → Save
+  $("#create-btn").text("Save").addClass("update-mode");
 
-      // Show form
-      $(".dish-container").slideDown(500);
-      $("#process-btn").hide();
+  // ✅ SHOW the form (instead of waiting for New Product button)
+  $(".dish-container").slideDown(300);
+  $("#process-btn").css("display", "none");
 
-      $("html, body").animate(
-        { scrollTop: $(".dish-container").offset().top },
-        500
-      );
-    } catch (error) {
-      console.error("Error fetching product:", error);
-      alert("Failed to load product for editing.");
-    }
-  });
+  // scroll to the form
+  $("html, body").animate(
+    {
+      scrollTop: $(".dish-container").offset().top,
+    },
+    500
+  );
+});
 
-  // Save (update) product
-  $(document).on("click", "#create-btn.update-mode", async function (e) {
-    e.preventDefault();
+// Save (update) product
+$(document).on("click", "#create-btn.update-mode", async function (e) {
+  e.preventDefault();
 
-    const id = $(".dish-container").data("id");
+  const id = $(".dish-container").data("id");
 
-    const updatedProduct = {
-      productName: $(".product-name").val(),
-      productPrice: $(".product-price").val(),
-      productLeftCount: $(".product-left-count").val(),
-      productCollection: $(".product-collection").val(),
-      productSize: $(".product-size").val(),
-      productVolume: $(".product-volume").val(),
-      productDesc: $(".product-desc").val(),
-      productStatus: $(".product-status").val(),
-    };
+  const updatedProduct = {
+    productName: $(".product-name").val(),
+    productPrice: $(".product-price").val(),
+    productLeftCount: $(".product-left-count").val(),
+    productCollection: $(".product-collection").val(),
+    productSize: $(".product-size").val(),
+    productVolume: $(".product-volume").val(),
+    productDesc: $(".product-desc").val(),
+    productStatus: $(".product-status").val(),
+  };
 
-    try {
-      const response = await axios.post(`/admin/product/${id}`, updatedProduct);
-      const result = response.data.product;
+  try {
+    const response = await axios.post(`/admin/product/${id}`, updatedProduct);
+    const result = response.data.product;
 
-      if (result) {
-        alert("Product updated successfully!");
+    if (result) {
+      // alert("Product updated successfully!");
 
-        // Update table row
-        const row = $(`#row-${id}`);
-        row.find(".product-name-cell").text(result.productName);
-        row.find(".product-collection-cell").text(result.productCollection);
-        row
-          .find(".product-volume-cell")
-          .text(
-            result.productCollection === "DRINK"
-              ? result.productVolume
-              : result.productSize
-          );
-        row.find(".product-price-cell").text(result.productPrice);
-        row.find(".product-left-cell").text(result.productLeftCount);
+      // Update table row
+      const row = $(`#row-${id}`);
+      row.find(".product-name-cell").text(result.productName);
+      row.find(".product-collection-cell").text(result.productCollection);
+      row
+        .find(".product-volume-cell")
+        .text(
+          result.productCollection === "DRINK"
+            ? result.productVolume
+            : result.productSize
+        );
+      row.find(".product-price-cell").text(result.productPrice);
+      row.find(".product-left-cell").text(result.productLeftCount);
 
-        // Reset form
-        $(".dish-container")[0].reset();
-        $("#create-btn").text("Create").removeClass("update-mode");
-        $(".dish-container").removeData("id");
+      // Reset form
+      $(".dish-container")[0].reset();
+      $("#create-btn").text("Create").removeClass("update-mode");
+      $(".dish-container").removeData("id");
 
-        $(".dish-container").slideUp(200);
-        $("#process-btn").css("display", "flex");
-      } else {
-        alert("Product update failed");
-      }
-    } catch (error) {
-      console.error("Error updating product:", error);
+      $(".dish-container").slideUp(200);
+      $("#process-btn").css("display", "flex");
+    } else {
       alert("Product update failed");
     }
-  });
+  } catch (error) {
+    console.error("Error updating product:", error);
+    alert("Product update failed");
+  }
 });
 
 ///////////////////////////////
