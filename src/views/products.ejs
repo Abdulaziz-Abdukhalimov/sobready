@@ -29,7 +29,7 @@
       <div class="board">
         <div class="dishes-table">
           <span class="new-dish-txt" style="margin-bottom: 30px">
-            RESTAURANT MENU
+           PRODUCTS LIST
           </span>
           <table class="table table-hover table-borderless">
             <thead class="thead-light">
@@ -57,6 +57,7 @@
     data-size="<%= value.productSize %>"
     data-volume="<%= value.productVolume %>"
     data-desc="<%= value.productDesc %>"
+    data-images="<%= JSON.stringify(value.productImages) %>"
   >
     <!-- <td><%= index + 1 %></td> -->
     <td>
@@ -103,7 +104,7 @@
           enctype="multipart/form-data"
         >
           <div class="long-input" style="display: flex; align-items: center">
-            <span class="new-dish-txt">NEW PRODUCT DETAIL</span>
+            <span class="new-dish-txt">Product Infromation</span>
           </div>
           <div class="login-input-frame">
             <div class="long-input">

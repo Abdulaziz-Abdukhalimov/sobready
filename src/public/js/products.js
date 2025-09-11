@@ -55,6 +55,21 @@ $(function () {
   });
 });
 
+//Image handling
+function renderImagesToForm(imageUrls) {
+  // Clear any existing images
+  for (let i = 1; i <= 5; i++) {
+    $(`#image-section-${i}`).attr("src", "/img/upload.svg");
+  }
+
+  // Render the new images from the provided URLs
+  imageUrls.forEach((url, index) => {
+    if (index < 5) {
+      $(`#image-section-${index + 1}`).attr("src", `/${url}`);
+    }
+  });
+}
+
 // Update product logic
 $(document).on("click", ".edit-product", function () {
   // find the parent <tr> of the clicked button
@@ -69,6 +84,7 @@ $(document).on("click", ".edit-product", function () {
   const size = row.data("size");
   const volume = row.data("volume");
   const desc = row.data("desc");
+  const images = row.data("images");
 
   // fill the form fields
   $(".product-name").val(name);
@@ -76,6 +92,8 @@ $(document).on("click", ".edit-product", function () {
   $(".product-left-count").val(left);
   $(".product-collection").val(collection);
   $(".product-desc").val(desc || "");
+
+  renderImagesToForm(images);
 
   // toggle between size/volume fields
   if (collection === "DRINK") {
