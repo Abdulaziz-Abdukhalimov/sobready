@@ -1,0 +1,30 @@
+export enum ProductSize {
+  SMALL = "SMALL",
+  NORMAL = "NORMAL",
+  SET = "SET",
+  ONE = 1,
+  HALF = 0.5,
+}
+
+export enum ProductVolume {
+  HALF = 0.5,
+  ONE = 1,
+  ONE_POINT_TWO = 1.2,
+  ONE_POINT_FIVE = 1.5,
+  TWO = 2,
+}
+
+export enum ProductStatus {
+  OUTOFSTOCK = "OUTOFSTOCK",
+  INSTOCK = "INSTOCK",
+  DELETE = "DELETE",
+}
+
+export enum ProductCollection {
+  SUSHI = "SUSHI",
+  SALAD = "SALAD",
+  SWEETS = "SWEETS",
+  DRINK = "DRINK",
+  DISH = "DISH",
+  FRUITS = "FRUITS",
+}

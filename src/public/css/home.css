@@ -1,0 +1,54 @@
+.home-container {
+  position: relative;
+  width: auto;
+  height: auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("/img/background.jpg");
+  background-size: cover; /* makes image cover full screen */
+  background-position: center; /* centers the image */
+  background-repeat: no-repeat; /* prevents tiling */
+}
+.home-container a {
+  text-decoration: none;
+  color: #888888;
+}
+.home-container .brand-logo {
+  width: 170px;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  justify-content: left;
+  text-align: left;
+  margin-left: -700px;
+  font-size: 40px;
+  gap: 10px;
+}
+.home-container .brand-logo .sob {
+  display: flex;
+  color: red;
+  text-align: left;
+  margin-left: -100px;
+  margin-top: 25px;
+  letter-spacing: 2px;
+}
+.home-container .brand-logo .ready {
+  color: #888888;
+  margin-top: 25px;
+}
+.home-container .nav-item a {
+  color: #888888;
+}
+
+.home-container .nav-item a.disabled {
+  color: #898071;
+}
+
+.home-container .navigation-menu {
+  position: relative;
+  z-index: 10000;
+  font-size: 30px;
+  font-family: "Jost";
+}

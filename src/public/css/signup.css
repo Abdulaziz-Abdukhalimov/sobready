@@ -1,0 +1,166 @@
+/* Page background */
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f6f5f7;
+}
+
+/* Container */
+.auth-container {
+  width: 850px;
+  height: 500px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  display: flex;
+  overflow: hidden;
+}
+
+/* Left side */
+.auth-left {
+  flex: 1;
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.auth-left h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.auth-left p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Right side */
+.auth-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.auth-right h1 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.auth-right p {
+  font-size: 14px;
+  margin: 15px 0;
+  color: #777;
+}
+
+/* Social icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  border-color: #ff416c;
+  color: #ff416c;
+}
+
+/* Form inputs */
+.auth-right form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+}
+
+.auth-right input {
+  padding: 12px;
+  margin: 8px 0;
+  border: none;
+  background: #eee;
+  border-radius: 4px;
+  font-size: 14px;
+  border-color: #ff477e;
+  outline: none;
+}
+.auth-right input:focus {
+  border: 1px solid #ff477e;
+}
+/* Buttons */
+.btn-outline {
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: #ff4b2b;
+  color: #ff416c;
+}
+
+.btn-solid {
+  background: #ff416c;
+  border: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: 20px;
+  margin-top: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-solid:hover {
+  background: #ff4b2b;
+}
+#login-btn a {
+  text-decoration: none;
+  color: #ffffff;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+  .auth-left,
+  .auth-right {
+    flex: none;
+    width: 100%;
+    padding: 20px;
+  }
+}

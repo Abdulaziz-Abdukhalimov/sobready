@@ -1,0 +1,78 @@
+<%- include('includes/header') %>
+
+<link rel="stylesheet" type="text/css" href="/css/signup.css" />
+
+<body>
+  <body>
+    <div class="auth-container">
+      <!-- Left Side -->
+      <div class="auth-left">
+        <h1>Hello!</h1>
+        <p>
+          To keep connected with us please login<br />
+          with your personal info
+        </p>
+        <button class="btn-outline" id="login-btn">
+          <a href="/admin/login">LOG IN</a>
+        </button>
+        <div><a href="/admin" style="color: aliceblue">Home</a></div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="auth-right">
+        <h1>Create Account</h1>
+        <div class="social-icons">
+          <a href="#"><span>f</span></a>
+          <a href="#"><span>G+</span></a>
+          <a href="#"><span>in</span></a>
+        </div>
+        <p>or use your email for registration</p>
+        <form
+          onsubmit="return validateSignupForm()"
+          action="/admin/signup"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <input
+            type="text"
+            name="memberNick"
+            class="member-nick"
+            placeholder="Name"
+            value=""
+            required
+          />
+          <input
+            type="text"
+            name="memberPhone"
+            class="member-phone"
+            placeholder="Phone"
+            value=""
+            required
+          />
+          <input
+            type="password"
+            name="memberPassword"
+            class="member-password"
+            placeholder="Password"
+            value=""
+            required
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            class="confirm-password"
+            placeholder="Confirm Password"
+            value=""
+            required
+          />
+          <button type="submit" class="btn-solid" id="signup-btn">
+            SIGN UP
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="/js/signup.js"></script>
+</body>
+<%- include('includes/footer') %>
