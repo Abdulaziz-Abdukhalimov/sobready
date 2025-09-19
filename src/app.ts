@@ -9,6 +9,8 @@ import { T } from "./libs/types/common";
 import routerAdmin from "./router-admin";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import ProductService from "./models/Product.service";
+import MemberService from "./models/Member.service";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
@@ -43,6 +45,18 @@ app.use(function (req, res, next) {
   const sessionInstance = req.session as T;
   res.locals.member = sessionInstance.member;
   next();
+});
+
+app.use(async function (req, res, next) {
+  try {
+    const productService = new ProductService();
+    const memberService = new MemberService();
+    res.locals.products = await productService.getAllProducts();
+    res.locals.users = await memberService.getUsers();
+    next();
+  } catch (err) {
+    next(err);
+  }
 });
 
 /* 3- Views */

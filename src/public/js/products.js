@@ -59,7 +59,7 @@ $(function () {
 function renderImagesToForm(imageUrls) {
   // Clear any existing images
   for (let i = 1; i <= 5; i++) {
-    $(`#image-section-${i}`).attr("src", "/img/upload.svg");
+    $(`#image-section-${i}`).attr("src", "/img/upload-bro.svg");
   }
 
   // Render the new images from the provided URLs

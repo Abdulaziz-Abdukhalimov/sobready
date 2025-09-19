@@ -84,7 +84,15 @@
   line-height: 25px;
   color: #888888;
 }
-
+.products-container .table .thead-light th {
+  background-color: #e6e6e7;
+  border: none;
+}
+.products-container table td,
+table th {
+  border-bottom: none;
+  border: none;
+}
 .products-container .long-input {
   position: relative;
   margin-top: 25px;
