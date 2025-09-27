@@ -22,17 +22,19 @@
         </li>
         <% } else { %>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
+          <a class="nav-link" href="/admin/product/all"
+            ><i class="fa-solid fa-bars"></i> </i>Menu</a
+          >
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
+          <a class="nav-link" href="/admin/user/all"> <i class="fa-solid fa-users"></i> Users</a>
         </li>
         <li
           class="nav-item"
           style="cursor: pointer"
           onclick="return confirm('Do you want to logout?')"
         >
-          <a class="nav-link" href="/admin/logout">Logout</a>
+          <a class="nav-link" href="/admin/logout"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
         </li>
         <% } %>
       </ul>
@@ -50,14 +52,14 @@
       <div class="info-cart">
         <div class="cart-title">
           <h4>Products</h4>
-          <p>🛒</p>
+         <i class="fa-solid fa-cart-plus" style="color: #FFD43B;"></i>
         </div>
         <h2><%=products.length %></h2>
       </div>
       <div class="info-cart">
         <div class="cart-title">
           <h4>Users</h4>
-          <img src="../public/img/default-user.svg" />
+          <i class="fa-solid fa-users" style="color: #ffd43b"></i>
         </div>
         <h2><%=users.length %></h2>
       </div>
