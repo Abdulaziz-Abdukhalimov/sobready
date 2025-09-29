@@ -1,30 +1,33 @@
-export enum ProductSize {
-  SMALL = "SMALL",
-  NORMAL = "NORMAL",
-  SET = "SET",
-  ONE = 1,
-  HALF = 0.5,
-}
-
 export enum ProductVolume {
-  HALF = 0.5,
-  ONE = 1,
-  ONE_POINT_TWO = 1.2,
-  ONE_POINT_FIVE = 1.5,
-  TWO = 2,
+  THIRTY = 30,
+  FIFTY = 50,
+  HUNDRED = 100,
 }
 
 export enum ProductStatus {
+  ACTIVE = "ACTIVE",
+  INACTIVE = "INACTIVE",
   OUTOFSTOCK = "OUTOFSTOCK",
-  INSTOCK = "INSTOCK",
-  DELETE = "DELETE",
 }
 
-export enum ProductCollection {
-  SUSHI = "SUSHI",
-  SALAD = "SALAD",
-  SWEETS = "SWEETS",
-  DRINK = "DRINK",
-  DISH = "DISH",
-  FRUITS = "FRUITS",
+export enum ProductGender {
+  MEN = "MEN",
+  WOMEN = "WOMEN",
+  UNISEX = "UNISEX",
+}
+
+export enum ProductType {
+  EAU_DE_PARFUM = "EAU_DE_PARFUM",
+  EAU_DE_TOILETTE = "EAU_DE_TOILETTE",
+  PARFUM = "PARFUM",
+  BODY_SPRAY = "BODY_SPRAY",
+}
+
+export enum ProductFragrance {
+  FLORAL = "FLORAL",
+  WOODY = "WOODY",
+  CITRUS = "CITRUS",
+  ORIENTAL = "ORIENTAL",
+  AROMATIC = "AROMATIC",
+  FRESH = "FRESH",
 }

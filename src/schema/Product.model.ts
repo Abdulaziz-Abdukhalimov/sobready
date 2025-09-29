@@ -1,55 +1,65 @@
 import mongoose, { Schema } from "mongoose";
 import {
-  ProductCollection,
-  ProductSize,
+  ProductFragrance,
+  ProductGender,
   ProductStatus,
+  ProductType,
   ProductVolume,
 } from "../libs/enums/product.enum";
 
 const productSchema = new Schema(
   {
-    productStatus: {
-      type: String,
-      enum: ProductStatus,
-      default: ProductStatus.INSTOCK,
-    },
-
-    productCollection: {
-      type: String,
-      enum: ProductCollection,
-      required: true,
-    },
-
     productName: {
       type: String,
       required: true,
     },
+
+    productBrand: {
+      type: String,
+      required: true,
+    },
+
+    productDesc: {
+      type: String,
+      required: true,
+    },
+
     productPrice: {
       type: Number,
       required: true,
     },
 
-    productLeftCount: {
+    productStock: {
       type: Number,
       required: true,
     },
+
+    productGender: {
+      type: String,
+      enum: ProductGender,
+    },
+
+    productType: {
+      type: String,
+      enum: ProductType,
+      required: true,
+    },
+
+    productFragrance: {
+      type: String,
+      enum: ProductFragrance,
+      required: true,
+    },
+
     productSoldCount: {
       type: Number,
       default: 0,
-    },
-    productSize: {
-      type: String,
-      enum: ProductSize,
-      default: ProductSize.NORMAL,
     },
 
     productVolume: {
       type: Number,
       enum: ProductVolume,
-      default: ProductVolume.ONE,
-    },
-    productDesc: {
-      type: String,
+      default: ProductVolume.FIFTY,
     },
 
     productImages: {
@@ -57,7 +67,17 @@ const productSchema = new Schema(
       default: [],
     },
 
+    productStatus: {
+      type: String,
+      enum: ProductStatus,
+      default: ProductStatus.ACTIVE,
+    },
+
     productView: {
+      type: Number,
+      default: 0,
+    },
+    productLikes: {
       type: Number,
       default: 0,
     },
@@ -65,9 +85,6 @@ const productSchema = new Schema(
   { timestamps: true }
 );
 
-productSchema.index(
-  { productName: 1, productSize: 1, productVolume: 1 },
-  { unique: true }
-);
+productSchema.index({ productName: 1, productVolume: 1 }, { unique: true });
 
 export default mongoose.model("Product", productSchema);
