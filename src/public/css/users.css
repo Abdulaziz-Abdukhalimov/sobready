@@ -78,12 +78,19 @@
 }
 
 .users-container .header-name {
+  width: 100%;
   font-family: "Source Serif Pro";
   font-style: normal;
+  display: flex;
+  align-items: center;
   font-weight: 400;
   font-size: 30px;
   line-height: 25px;
   color: #888888;
+}
+.users-container .header-name p {
+  margin-left: 30px;
+  margin-top: 5px;
 }
 
 .users-container select:focus {
@@ -116,4 +123,14 @@ table th {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #ccc transparent;
+}
+.users-container .spec-select.active {
+  color: green;
+}
+
+.users-container .spec-select.block {
+  color: red;
+}
+.users-container .spec-select.delete {
+  color: black;
 }

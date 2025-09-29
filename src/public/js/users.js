@@ -21,3 +21,22 @@ $(".member-status").on("change", async function (e) {
     alert("user update failed");
   }
 });
+
+function updateSelectColor(select) {
+  // Remove old classes
+  select.classList.remove("active", "block");
+
+  // Add new class based on selected value
+  if (select.value === "ACTIVE") {
+    select.classList.add("active");
+  } else if (select.value === "BLOCK") {
+    select.classList.add("block");
+  } else if (select.value === "DELETE") {
+    select.classList.add("delete");
+  }
+}
+
+// Run once at page load for initial colors
+document.querySelectorAll(".spec-select").forEach((select) => {
+  updateSelectColor(select);
+});

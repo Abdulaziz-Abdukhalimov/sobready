@@ -78,12 +78,18 @@
 }
 
 .products-container .new-dish-txt {
-  font-family: "Source Serif Pro";
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: monospace;
   font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 25px;
+  font-size: 20px;
   color: #888888;
+}
+
+.products-container .new-dish-txt span {
+  margin-left: 200px;
 }
 .products-container .table .thead-light th {
   background-color: #e6e6e7;
@@ -311,11 +317,13 @@ table th {
   line-height: 26px;
   color: #4f547b;
 }
-
 .products-container table td,
 table th {
-  text-align: center;
+  text-align: left;
   vertical-align: middle;
+}
+.products-container table .productname {
+  max-width: 200px;
 }
 
 .products-container .switch {
