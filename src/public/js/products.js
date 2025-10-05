@@ -1,33 +1,19 @@
 console.log("Products frontend javascript file");
 
-$(function () {
-  // Handle product collection (Dish vs Drink)
-  $(".product-collection").on("change", () => {
-    const selectedValue = $(".product-collection").val();
-    if (selectedValue === "DRINK") {
-      $("#product-collection").hide();
-      $("#product-volume").show();
-    } else {
-      $("#product-volume").hide();
-      $("#product-collection").show();
-    }
-  });
-
+$(document).ready(function () {
   // Show create form
-  $("#process-btn").on("click", () => {
-    $(".dish-container").slideToggle(500);
-    $("#process-btn").css("display", "none");
+  $("#addProductBtn").on("click", function () {
+    $(".add-product-form-container").show();
+    $(".product-table").hide();
+    $("#addProductBtn").hide();
   });
 
   // Cancel form
-  $("#cancel-btn").on("click", () => {
-    $(".dish-container").slideToggle(100);
-    $("#process-btn").css("display", "flex");
-
-    // Reset form + switch back to create mode
-    $(".dish-container")[0].reset();
-    $("#create-btn").text("Create").removeClass("update-mode");
-    $(".dish-container").removeData("id");
+  $(".cancel-btn").on("click", function () {
+    $(".add-product-form-container").hide();
+    $(".product-table").show();
+    $("#addProductForm")[0].reset(); // reset the form
+    $("#addProductBtn").show();
   });
 
   // Update product status (dropdown)
@@ -220,3 +206,34 @@ function previewFileHandler(input, order) {
     reader.readAsDataURL(file);
   }
 }
+
+//status colors
+const selects = document.querySelectorAll(".spec-select");
+
+// Function to update background based on value
+function updateSelectColor(select) {
+  select.classList.remove(
+    "select-active",
+    "select-inactive",
+    "select-outofstock"
+  );
+
+  switch (select.value) {
+    case "ACTIVE":
+      select.classList.add("select-active");
+      break;
+    case "INACTIVE":
+      select.classList.add("select-inactive");
+      break;
+    case "OUTOFSTOCK":
+      select.classList.add("select-outofstock");
+      break;
+  }
+}
+
+// Initialize all selects on page load
+selects.forEach((select) => {
+  updateSelectColor(select);
+  // Add event listener for change
+  select.addEventListener("change", () => updateSelectColor(select));
+});

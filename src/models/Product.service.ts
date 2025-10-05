@@ -6,6 +6,7 @@ import {
   ProductUpdateInput,
 } from "../libs/types/products";
 import { shapeIntoMongooseObjectId } from "../libs/config";
+import { T } from "../libs/types/common";
 
 class ProductService {
   private readonly productModel;
@@ -25,7 +26,7 @@ class ProductService {
       const result = await this.productModel.create(input);
       return result.toObject() as Product;
     } catch (error) {
-      console.error("Error , model: vreateNewProduct", error);
+      console.error("Error , model: CreateNewProduct", error);
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
   }

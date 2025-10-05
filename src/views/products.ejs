@@ -10,189 +10,133 @@
           <a class="nav-link active" href="/admin/">Home</a>
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
+          <a class="nav-link" href="/admin/product/all"
+            ><i class="fa-solid fa-bars"></i> </i>Menu</a
+          >
         </li>
         <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
+          <a class="nav-link" href="/admin/user/all"> <i class="fa-solid fa-users"></i> Users</a>
         </li>
         <li
           class="nav-item"
           style="cursor: pointer"
           onclick="return confirm('Do you want to logout?')"
         >
-          <a class="nav-link" href="/admin/logout">Logout</a>
+          <a class="nav-link" href="/admin/logout"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
         </li>
       </ul>
     </div>
-
-    <div class="restaurant-menu-frame">
-      <div class="board">
-        <div class="dishes-table">
-          <div class="new-dish-txt">
-           <span>Products</span>
-           <span> All Products(<%=products.length %>)</span>
-            <div
-            class="long-input"
-            style="align-items: flex-end; margin-bottom: 25px"
-          >
-            <button class="btn" id="process-btn">
-              +Add New Product
-            </button>
+        <div class="table-container">
+          <div class="table-header">
+            <h3>Product Stock</h3>
+            <button type="button" class="add-btn" id="addProductBtn"> + Add new Product</button>
           </div>
 
-        </div>
-          <table class="table table-hover table-borderless">
-            <thead class="thead-light">
-              <tr class="thead-light">
-                <!-- <th scope="col">T/r</th> -->
-                <th scope="col"> Product</th>
-                <th scope="col"> Type</th>
-                <th scope="col"> Volume</th>
-                <th scope="col"> Price</th>
-                <th scope="col"> Left Count</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <!--  LOOP PRODUCTS: START  -->
-            <% products.map( function(value, index) { %>
-           <tbody id="row-<%= value._id %>" style="background: white" >
-  <tr
-    data-id="<%= value._id %>"
-    data-name="<%= value.productName %>"
-    data-price="<%= value.productPrice %>"
-    data-left="<%= value.productLeftCount %>"
-    data-collection="<%= value.productCollection %>"
-    data-size="<%= value.productSize %>"
-    data-volume="<%= value.productVolume %>"
-    data-desc="<%= value.productDesc %>"
-    data-images="<%= JSON.stringify(value.productImages) %>"
-  >
-    <!-- <td><%= index + 1 %></td> -->
-    <td class="productname">
-      <img src="/<%= value.productImages[0] %>" style="width: 40px; height: 40px; object-fit: cover; border-radius: 25px;"> <%= value.productName %>
-    </td>
-    <td class="product-collection-cell"><%= value.productCollection %></td>
-    <td class="product-volume-cell">
-      <%= value.productCollection === 'DRINK' ? value.productVolume : value.productSize %>
-    </td>
-    <td class="product-price-cell"> $ <%= value.productPrice %></td>
-    <td class="product-left-cell"><%= value.productLeftCount %></td>
-    <td>
-      <select class="spec-select new-product-status" id="<%= value._id %>">
-        <option value="OUTOFSTOCK" <%= value.productStatus === 'OUTOFSTOCK'? 'selected': '' %>>OUTOFSTOCK</option>
-        <option value="INSTOCK" <%= value.productStatus === 'INSTOCK'? 'selected': '' %>>INSTOCK</option>
-        <option value="DELETE" <%= value.productStatus === 'DELETE'? 'selected': '' %>>DELETE</option>
-      </select>
-    </td>
-    <td>
-      <span class="edit-product" style="cursor:pointer;">🖋️</span>
-    </td>
-  </tr>
-</tbody>
+         <div class="product-table-container" >
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Piece</th>
+        <th>Available Volume</th>
+        <th>Product Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.map(function (product) { %>
+      <tr>
+        <td>
+          <img src="/<%= product.productImages[0] %>" class="product-img" />
+        </td>
+        <td><%= product.productName %></td>
+        <td><%= product.productType %></td>
+        <td>$<%= product.productPrice.toFixed(2) %></td>
+        <td><%= product.productStock %></td>
+        <td>
+         <%= Array.isArray(product.productVolume) && product.productVolume.length
+            ? product.productVolume.map(function(v){ return v + " ml"; }).join(", ")
+           : (product.productVolume ? product.productVolume + " ml" : "—") %>
+        </td>
+        <td>
+                <select
+                  class="spec-select new-product-status"
+                  id="<%= product._id %>"
+                >
+                  <option value="ACTIVE" <%= product.productStatus === 'ACTIVE'? 'selected': '' %> >Active</option>
+                  <option value="INACTIVE" <%= product.productStatus === 'INACTIVE'? 'selected': '' %> >Inactive</option>
+                  <option value="OUTOFSTOCK" <%= product.productStatus === 'OUTOFSTOCK'? 'selected': '' %> >Outof stock</option>
+                </select>
+              </td>
+        <td class="actions">
+          <button class="edit-btn">
+            <i class="fa-solid fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
 
-
-            <% })%>
-            <!--  LOOP PRODUCTS: END  -->
-          </table>
-           <!-- <div
-            class="long-input"
-            style="align-items: flex-end; margin-bottom: 25px"
-          >
-            <button class="btn" id="process-btn">
-              Add New Product
-            </button>
-          </div> -->
-        </div>
-        <form
-          onsubmit="validateForm()"
-          action="/admin/product/create"
-          method="POST"
-          class="dish-container"
-          enctype="multipart/form-data"
-        >
-          <div class="long-input" style="display: flex; align-items: center">
-            <span class="new-dish-txt">Product Infromation</span>
-          </div>
-          <div class="login-input-frame">
-            <div class="long-input">
-              <label>Product Name</label>
-              <input
-                type="text"
-                placeholder="Name"
-                name="productName"
-                class="product-name"
-              />
-            </div>
-            <input
-              name="productStatus"
-              value="INSTOCK"
-              class="product-status"
-              hidden
-            />
-          </div>
-          <div class="half-input-frame">
-            <div class="half-input">
-              <label>Product Price</label>
-              <input
-                type="number"
-                placeholder="Price"
-                name="productPrice"
-                class="product-price"
-              />
-            </div>
-            <div class="half-input">
-              <label>Product Left Counts</label>
-              <input
-                type="number"
-                placeholder="Counts"
-                name="productLeftCount"
-                class="product-left-count"
-              />
-            </div>
-          </div>
-          <div class="half-input-frame">
-            <div class="half-input">
-              <label>Product Type</label>
-              <select class="product-collection" name="productCollection">
-                <option value="SUSHI" selected>Sushi</option>
-                <option value="DISH">Dish</option>
-                <option value="SALAD">Salad</option>
-                <option value="SWEETS">Sweets</option>
-                <option value="DRINK">Drink</option>
-              </select>
-            </div>
-
-            <div class="half-input" id="product-collection">
-              <label>Dish Volume</label>
-              <select class="product-size" name="productSize">
-                <option value="SMALL">Small</option>
-                <option value="NORMAL" selected>Normal</option>
-                <option value="SET">Set</option>
-              </select>
-            </div>
-
-            <div class="half-input" id="product-volume" style="display: none">
-              <label>Drink Volume</label>
-              <select class="product-volume" name="productVolume">
-                <option value="0.5">0,5 liters</option>
-                <option value="1" selected>1 liters</option>
-                <option value="1.2">1,2 liters</option>
-                <option value="1.5">1,5 liters</option>
-                <option value="2">2 liters</option>
-              </select>
-            </div>
-          </div>
-          <div class="long-input">
+  <!-- Add Product Form (hidden by default) -->
+<div class="add-product-form-container" style="display: none;">
+  <h3>Add New Product</h3>
+  <form id="addProductForm" action="/admin/product/create" method="POST" enctype="multipart/form-data" onsubmit="validateForm()" class="newp-container">
+    <div class="form-group1">
+      <label>Product Name:</label>
+      <input type="text" name="productName" required />
+      <label>Product Brand:</label>
+      <input type="text" name="productBrand" required />
+    </div>
+    <div class="form-group">
+      <label>Category:</label>
+       <select name="productType">
+        <option value="EAU_DE_PARFUM" selected>Eau_de_parfum</option>
+        <option value="EAU_DE_TOILETTE" >Eau_de_toilette</option>
+        <option value="PARFUM" >Parfum</option>
+        <option value="BODY_SPRAY" >Body Spray</option>
+       </select>
+    </div>
+     <div class="form-group">
+      <label>Fragrance:</label>
+       <select name="productFragrance">
+        <option value="FLORAL" selected>Floral</option>
+        <option value="WOODY" >Woody</option>
+        <option value="CITRUS" >Citrus</option>
+        <option value="ORIENTAL" >Orinental</option>
+        <option value="AROMATIC" >Aromatic</option>
+        <option value="FRESH" >Fresh</option>
+       </select>
+    </div>
+    <div class="form-group">
+      <label>Price ($):</label>
+      <input type="number" step="0.01" name="productPrice" required />
+    </div>
+    <div class="form-group">
+      <label>Stock (pieces):</label>
+      <input type="number" name="productStock" required />
+    </div>
+    <div class="form-group">
+      <label>Volume (ml, comma separated):</label>
+      <!-- <input type="text" name="productVolume" placeholder="e.g. 250, 500" /> -->
+       <select name="productVolume" class="selects">
+        <option value="30" selected>30 ml</option>
+        <option value="50" >50 ml</option>
+        <option value="100" >100 ml</option>
+       </select>
+    </div>
+       <div class="long-input">
             <label>Product Description</label>
             <textarea name="productDesc" class="product-desc"></textarea>
           </div>
-
-          <div class="img-frame">
+       <div class="img-frame">
             <label>Product Images</label>
             <div class="media-frame">
               <div class="upload-img-box">
-                <img src="/img/upload-bro.svg" class="1" id="image-section-1" />
+                <img src="/img/upload-icon.png" class="1" id="image-section-1" />
                 <input
                   type="file"
                   id="file"
@@ -202,7 +146,7 @@
                 />
               </div>
               <div class="upload-img-box">
-                <img src="/img/upload-bro.svg" class="2" id="image-section-2" />
+                <img src="/img/upload-icon.png" class="2" id="image-section-2" />
                 <input
                   type="file"
                   id="file"
@@ -212,7 +156,7 @@
                 />
               </div>
               <div class="upload-img-box">
-                <img src="/img/upload-bro.svg" class="3" id="image-section-3" />
+                <img src="/img/upload-icon.png" class="3" id="image-section-3" />
                 <input
                   type="file"
                   id="file"
@@ -222,7 +166,7 @@
                 />
               </div>
               <div class="upload-img-box">
-                <img src="/img/upload-bro.svg" class="4" id="image-section-4" />
+                <img src="/img/upload-icon.png" class="4" id="image-section-4" />
                 <input
                   type="file"
                   id="file"
@@ -231,29 +175,19 @@
                   onchange="previewFileHandler(this,4)"
                 />
               </div>
-              <div class="upload-img-box">
-                <img src="/img/upload-bro.svg" class="5" id="image-section-5" />
-                <input
-                  type="file"
-                  id="file"
-                  name="productImages"
-                  class="image-five"
-                  onchange="previewFileHandler(this,5)"
-                />
-              </div>
               <input name="restaurantIid" class="restaurant-id" hidden />
             </div>
           </div>
-
-          <div class="operation-buttons">
-            <button class="btn btn-danger" id="cancel-btn" type="button">Cancel</button>
-            <button type="submit" class="btn btn-primary" id="create-btn">
-              Create
-            </button>
-          </div>
-        </form>
-      </div>
+    <div class="form-buttons">
+      <button type="submit" class="save-btn">Save</button>
+      <button type="button" class="cancel-btn">Cancel</button>
     </div>
+  </form>
+</div>
+
+</div>
+   </div>
+
   </div>
 
   <script type="text/javascript" src="/js/products.js"></script>

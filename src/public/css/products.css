@@ -6,13 +6,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: url("/img/background.jpg");
   font-family: monospace;
-  background-size: cover; /* makes image cover full screen */
-  background-position: center; /* centers the image */
-  background-repeat: no-repeat; /* prevents tiling */
 }
-
+/*
 .products-container a {
   text-decoration: none;
   color: #000000;
@@ -24,372 +20,343 @@
 
 .products-container .nav-item a.disabled {
   color: #898071;
-}
+} */
 
 .products-container .navigation-menu {
-  position: absolute;
-  z-index: 10000;
-  top: 1%;
-  color: #efefee;
-  font-size: 30px;
-  font-family: monospace;
-}
-
-.products-container .restaurant-menu-frame {
-  position: relative;
-  padding-bottom: 80px;
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.products-container .restaurant-menu-frame .board {
-  position: relative;
-  margin-top: 100px;
-  width: 1320px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.products-container .board .dishes-table {
-  position: relative;
-  width: 100%;
-  height: auto;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.products-container .board .dish-container {
-  position: relative;
+  /* position: absolute; */
+  /* z-index: 10000; */
   margin-top: 20px;
-  width: 100%;
-  height: auto;
-
-  /* TODO: UNCOMMENT */
-  display: none;
-  flex-direction: column;
-  align-items: center;
+  /* color: #efefee; */
+  /* font-size: 30px; */
+  /* font-family: monospace; */
 }
 
-.products-container .new-dish-txt {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: monospace;
-  font-style: normal;
-  font-size: 20px;
-  color: #888888;
-}
-
-.products-container .new-dish-txt span {
-  margin-left: 200px;
-}
-.products-container .table .thead-light th {
-  background-color: #e6e6e7;
-  border: none;
-}
-.products-container table td,
-table th {
-  border-bottom: none;
-  border: none;
-}
-.products-container .long-input {
-  position: relative;
-  margin-top: 25px;
-  width: 100%;
+.products-container .table-container {
+  width: 1286px;
   height: auto;
   display: flex;
   flex-direction: column;
+  font-family: "Nunito Sans";
 }
 
-.products-container .long-input label {
-  font-family: "Source Serif Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 25px;
-  color: #4a4747;
-}
-
-.products-container .long-input input {
+.products-container .table-container .table-header {
   position: relative;
-  margin-top: 10px;
-  padding-left: 20px;
-  width: 100%;
-  height: 54px;
-  border: none;
-  background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
-}
-
-.products-container .long-input textarea {
-  position: relative;
-  margin-top: 10px;
-  padding: 20px;
-  width: 100%;
-  height: 200px;
-  border: none;
-  background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
-}
-
-.products-container .half-input select {
-  position: relative;
-  margin-top: 10px;
-  padding: 0px 20px;
-  width: 100%;
-  height: 55px;
-  display: flex;
-  border: none;
-  background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
-}
-
-.products-container select:focus {
-  min-width: 100%;
-  width: auto;
-}
-
-.products-container .long-input select {
-  position: relative;
-  margin-top: 10px;
-  padding: 0px 20px;
-  width: 100%;
-  height: 55px;
-  display: flex;
-  border: none;
-  background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
-}
-
-.products-container .dish-container .half-input-frame {
-  position: relative;
-  margin-top: 25px;
-  width: 100%;
+  margin-top: 50px;
   height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
-.products-container .half-input-frame .half-input {
-  position: relative;
-  width: 49%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.products-container .half-input label {
-  font-family: "Source Serif Pro";
+.products-container .table-container .table-header h3 {
+  color: #202224;
+  font-family: "Nunito Sans";
+  font-size: 32px;
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 25px;
-  color: #4a4747;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.114px;
 }
-
-.products-container .half-input input {
-  position: relative;
-  margin-top: 10px;
-  padding-left: 20px;
-  width: 100%;
-  height: 54px;
+.products-container .table-container .add-btn {
   border: none;
-  background: #f7f7f7;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
-}
-
-.products-container .media-frame {
-  position: relative;
-  margin-top: 10px;
-  width: 100%;
-  height: 250px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.products-container .media-frame .upload-img-box {
-  position: relative;
-  width: 19%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.products-container .upload-img-box img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-  border-radius: 10px;
-}
-
-.products-container .img-frame {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.products-container .img-frame label {
-  margin-top: 30px;
-  font-family: "Source Serif Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 25px;
-  color: #ffffff;
-}
-
-.products-container #file {
-  opacity: 0;
-  border: none;
-  border-radius: 10px;
-  background: grey;
-  position: absolute;
-  left: 0px;
-  width: 100%;
-  top: 0px;
-  height: 100%;
-  cursor: pointer;
-}
-
-.products-container .operation-buttons {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.products-container .spec-select {
-  position: relative;
-  padding: 0px 7px;
-  height: 27px;
-  background: #ffffff;
-  border: 1px solid #dddddd;
   border-radius: 8px;
-  font-family: "GT Walsheim Pro";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4f547b;
+  padding: 7px 15px 7px 15px;
+  background-color: rgb(48, 72, 53);
+  color: white;
 }
-.products-container table td,
-table th {
+.products-container .table-container .add-btn:hover {
+  background-color: #122717;
+}
+.products-container .table-container .table-header input {
+  width: 253px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 19px;
+  border: 0.6px solid #d5d5d5;
+  background: #fff;
+}
+
+.product-table-container {
+  margin-top: 20px;
+  overflow-x: auto;
+  background: #fff;
+  padding: 15px;
+  /* border-radius: 10px;
+  border: 0.3px solid #b9b9b9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); */
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+  border-radius: 0 0 14px 14px;
+  background: #fff;
+}
+.product-table th {
+  height: 48px;
+  border-bottom: 1px solid #eee;
+  padding-left: 10px;
+}
+.product-table td {
+  padding: 12px 10px;
   text-align: left;
-  vertical-align: middle;
-}
-.products-container table .productname {
-  max-width: 200px;
-}
-
-.products-container .switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 20px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  height: 80px;
 }
 
-.products-container .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.product-table th {
+  font-weight: 600;
+  color: #333;
 }
 
-.products-container .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+.product-img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
-.products-container .slider:before {
-  position: absolute;
-  content: "";
-  height: 14px;
-  width: 14px;
-  left: 6px;
-  bottom: 3.5px;
-  background-color: white;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+.color-list {
+  display: flex;
+  gap: 6px;
 }
 
-.products-container input:checked + .slider {
-  background-color: #2196f3;
-}
-
-.products-container input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
-}
-
-.products-container input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-.products-container .slider.round {
-  border-radius: 34px;
-}
-
-.products-container .slider.round:before {
+.color-dot {
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
+  border: 1px solid #ccc;
 }
-.products-container .btn {
-  color: #888888;
-  background-color: #ffffff;
-  border: 1px #888888 solid;
+
+.actions {
+  display: flex;
+  gap: 8px;
 }
-.products-container .btn:hover {
-  color: #ffffff;
-  background-color: #888888;
+
+.edit-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  transition: transform 0.2s;
+}
+
+.edit-btn:hover {
+  color: rgb(48, 72, 53);
+  transform: scale(1.1);
+}
+.spec-select {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.select-active {
+  background-color: #28a745; /* green */
+  color: white;
+}
+
+.select-inactive {
+  background-color: #ffc107; /* yellow */
+  color: black;
+}
+
+.select-outofstock {
+  background-color: #dc3545; /* red */
+  color: white;
+}
+
+/* Create product form */
+/* === General Container === */
+.add-product-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 25px 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.add-product-form-container h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* === Form Layout === */
+.newp-container .form-group,
+.newp-container .form-group1,
+.newp-container .long-input {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.newp-container label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* === Inputs & Select === */
+.newp-container input[type="text"],
+.newp-container input[type="number"],
+.newp-container input[type="file"],
+.newp-container select,
+.newp-container textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  font-size: 14px;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.newp-container input:focus,
+.newp-container select:focus,
+.newp-container textarea:focus {
+  outline: none;
+  border-color: #4b7bec;
+  background: #fff;
+}
+
+/* Fix typo in <option> */
+.newp-container select option {
+  background: #fff;
+  color: #333;
+}
+
+/* === Textarea === */
+.newp-container textarea.product-desc {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* === Buttons === */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.form-buttons .save-btn,
+.form-buttons .cancel-btn {
+  flex: 1;
+  padding: 10px 0;
+  margin: 0 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.save-btn {
+  background: #4b7bec;
+  color: #fff;
+}
+
+.save-btn:hover {
+  background: #3867d6;
+  transform: translateY(-1px);
+}
+
+.cancel-btn {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background: #d5d5d5;
+  transform: translateY(-1px);
+}
+
+/* === Small Details === */
+input[type="file"] {
+  background: #fff;
+}
+/* ==== Image frame ====*/
+/* === Image Frame Container === */
+.img-frame {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.img-frame label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* === Media Frame === */
+.media-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  background: #f4f6f5; /* Light gray background */
+  padding: 15px;
+  border: 1px dashed #cfd6d3; /* Dashed border */
+  border-radius: 12px;
+}
+
+/* === Upload Boxes === */
+.upload-img-box {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  background: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-img-box:hover {
+  border-color: #4b7bec;
+  box-shadow: 0 0 0 3px rgba(75, 123, 236, 0.1);
+}
+
+/* === Image Preview / Placeholder === */
+.upload-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* === Hide actual file input === */
+.upload-img-box input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Optional: when an image is selected, add a subtle overlay tick */
+.upload-img-box.selected::after {
+  content: "✔";
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 14px;
+  padding: 2px 5px;
+  border-radius: 4px;
 }

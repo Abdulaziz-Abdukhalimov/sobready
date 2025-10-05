@@ -57,9 +57,9 @@ const productSchema = new Schema(
     },
 
     productVolume: {
-      type: Number,
+      type: [Number],
       enum: ProductVolume,
-      default: ProductVolume.FIFTY,
+      default: [ProductVolume.FIFTY],
     },
 
     productImages: {

@@ -47,17 +47,16 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(async function (req, res, next) {
-  try {
-    const productService = new ProductService();
-    const memberService = new MemberService();
-    res.locals.products = await productService.getAllProducts();
-    res.locals.users = await memberService.getUsers();
-    next();
-  } catch (err) {
-    next(err);
-  }
-});
+// app.use(async function (req, res, next) {
+//   try {
+//     // const productService = new ProductService();
+//     const memberService = new MemberService();
+//     res.locals.users = await memberService.getUsers();
+//     next();
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 /* 3- Views */
 app.set("views", path.join(__dirname, "views"));
