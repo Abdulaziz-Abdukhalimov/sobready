@@ -1,41 +1,110 @@
 <%- include('includes/header') %>
 
-<link rel="stylesheet" type="text/css" href="/css/home.css" />
+<link rel="stylesheet" type="text/css" href="/css/users.css" />
 <body>
   <div class="home-container">
-    <div class="brand-logo">
-      <span class="sob">SOB</span>
-      <span class="ready">READY</span>
+    <!-- Header Navigation -->
+    <nav class="header-nav">
+      <div class="nav-container">
+        <div class="brand-logo">
+          <span class="sob">SEPHORA</span>
+        </div>
+        <ul class="nav-menu">
+          <% if(!member) { %>
+          <li>
+            <a href="/admin"><i class="fa-solid fa-home"></i> Home</a>
+          </li>
+          <li>
+            <a href="/admin/signup"
+              ><i class="fa-solid fa-user-plus"></i> Signup</a
+            >
+          </li>
+          <li>
+            <a href="/admin/login"
+              ><i class="fa-solid fa-right-to-bracket"></i> Login</a
+            >
+          </li>
+          <% } else { %>
+          <li>
+            <a href="/admin" class="active"
+              ><i class="fa-solid fa-home"></i> Home</a
+            >
+          </li>
+          <li>
+            <a href="/admin/product/all"
+              ><i class="fa-solid fa-bars"></i> Menu</a
+            >
+          </li>
+          <li>
+            <a href="/admin/user/all"
+              ><i class="fa-solid fa-users"></i> Users</a
+            >
+          </li>
+          <li>
+            <a
+              href="/admin/logout"
+              onclick="return confirm('Do you want to logout?')"
+              ><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a
+            >
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="table-header">
+      <h2>Users Management</h2>
     </div>
 
-    <div class="navigation-menu">
-      <ul class="nav justify-content-center">
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin">Home</a>
-        </li>
-        <% if(!member) { %>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/signup">Signup</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/login">Login</a>
-        </li>
-        <% } else { %>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all"
-            ><i class="fa-solid fa-bars"></i> </i>Menu</a
-          >
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all"> <i class="fa-solid fa-users"></i> Users</a>
-        </li>
-        <li
-          class="nav-item"
-          style="cursor: pointer"
-          onclick="return confirm('Do you want to logout?')"
-        >
-          <a class="nav-link" href="/admin/logout"> <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-        </li>
-        <% } %>
-      </ul>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Phone</th>
+            <th>Points</th>
+            <th>Date Joined</th>
+            <th>User Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(function(user) { %>
+          <tr>
+            <td>
+              <div class="user-info">
+               <img src="<%= user.memberImage ? '/' + user.memberImage : '/img/defaultUser.png' %>"
+                    alt="<%= user.memberNick %>"
+                    class="user-avatar">
+                <div class="user-details">
+                  <span class="user-name"><%= user.memberNick %></span>
+                  <span class="user-email"><%= user.memberEmail || '' %></span>
+                </div>
+              </div>
+            </td>
+            <td><%= user.memberPhone %></td>
+            <td>
+              <span class="points-badge">⭐ <%= user.memberPoints || 0 %></span>
+            </td>
+            <td class="date-text"><%= new Date(user.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+            <td>
+              <select class="member-status spec-select" id="<%= user._id %>">
+                <option value="ACTIVE" <%= user.memberStatus === 'ACTIVE' ? 'selected' : '' %>>Active</option>
+                <option value="BLOCK" <%= user.memberStatus === 'BLOCK' ? 'selected' : '' %>>Block</option>
+                <option value="DELETE" <%= user.memberStatus === 'DELETE' ? 'selected' : '' %>>Delete</option>
+              </select>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
     </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/js/users.js"></script>
+
+</body>
+<%- include('includes/footer') %>
